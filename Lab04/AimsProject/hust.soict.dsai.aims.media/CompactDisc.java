@@ -4,6 +4,7 @@ public class CompactDisc extends Disc implements Playable{
     
     private String artist;
     private ArrayList<Track> tracks;
+    public boolean isBook = false;
     
     @Override
     public void play() {
