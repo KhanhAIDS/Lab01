@@ -4,46 +4,39 @@ public class CompactDisc extends Disc implements Playable{
     
     private String artist;
     private ArrayList<Track> tracks;
-    public boolean isBook = false;
     
     @Override
     public void play() {
-        if (this.isBook == false) {
-            for (Track i : tracks) {
-                System.out.println("Playing track: " + i.getTitle());
-                System.out.println("Track length: " + i.getLength());
-            }
-        }
+        for (Track i : tracks) {
+            System.out.println("Playing track: " + i.getTitle());
+            System.out.println("Track length: " + i.getLength());
+        }      
     }
 
-    public CompactDisc(String title, String category, int length, String director, String artist, ArrayList<Track> tracks, float cost) {
+    public CompactDisc(int id, String title, String category, String director, String artist, ArrayList<Track> tracks, float cost) {
+        this.setId(id);
         this.setTitle(title);
         this.setCategory(category);
-        this.artist = artist;
-        this.setLength(length);
-        this.setCost(cost);
         this.setDirector(director);
+        this.setArtist(artist);
         this.setTrack(tracks);
+        this.setCost(cost);  
     }
 
     public String getArtist() {
         return artist;
     }
 
+    public ArrayList<Track> getTracks() {
+        return tracks;
+    } 
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
     public void setTrack(ArrayList<Track> tracks) {
         this.tracks = tracks;
-    }
-
-    CompactDisc() {
-
-    }
-
-    public void addTrack() {
-
-    }
-
-    public void removeTrack() {
-
     }
 
     public int getLength() {
@@ -52,6 +45,19 @@ public class CompactDisc extends Disc implements Playable{
             total += i.getLength();
         }
         return total;
+    }
+
+    public void addTrack(String title, int length) {
+        tracks.add(new Track(title, length));
+        System.out.println("Track added successfully");
+    }
+
+    public void removeTrack(String title) {
+        for (Track i : tracks) {
+            if (i.getTitle() == title) {
+                tracks.remove(i);
+            }
+        }
     }
 
     public String toString() {
